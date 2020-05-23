@@ -6,11 +6,100 @@
              mc:Ignorable="d"
              x:Class="PasswordGeneratorApp.MainPage">
 
-    <StackLayout>
+    <RelativeLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+        <Frame x:Name="frameTitle" RelativeLayout.YConstraint="{ConstraintExpression 
+                                                Type=RelativeToParent,
+                                                Property=Y,
+                                                Factor=1,
+                                                Constant=50}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression 
+                                                Type=RelativeToParent,
+                                                Property=Width,
+                                                Factor=1}" HasShadow="False">
+            <Label Text="Password Generator" HorizontalOptions="CenterAndExpand" FontSize="Title" />
+        </Frame>
+        
+        <!--<Frame 
+            BorderColor="Orange"
+            CornerRadius="10"
+            HasShadow="False"
+            RelativeLayout.YConstraint="{ConstraintExpression 
+                                                Type=RelativeToView,
+                                                ElementName=frameTitle,
+                                                Property=Y,Constant=100}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression
+                                                Type=RelativeToParent,
+                                                Property=Width,
+                                                Factor=1}">-->
+            <Label 
+                x:Name="lblGeneratedPassword" 
+                BackgroundColor="Yellow"
+                Margin="20"
+                RelativeLayout.YConstraint="{ConstraintExpression 
+                                                Type=RelativeToView,
+                                                ElementName=frameTitle,
+                                                Property=Y,Constant=100}"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression
+                                                    Type=RelativeToParent,
+                                                    Property=Width,
+                                                    Factor=1}"/> 
+        <!--</Frame>-->
+
+
+        <Button 
+            x:Name="btnGeneratePassword" 
+            Text="Generate Password" 
+            RelativeLayout.YConstraint="{ConstraintExpression 
+                                                Type=RelativeToView,
+                                                ElementName=lblGeneratedPassword,
+                                                Property=Y,Constant=100}"
+            RelativeLayout.XConstraint="{ConstraintExpression 
+                                            Type=RelativeToParent,
+                                            Property=Width,Factor=0.5,Constant=-100}" 
+            WidthRequest="200"/>
+        <Grid Margin="20"
+              RelativeLayout.YConstraint="{ConstraintExpression 
+                                                Type=RelativeToView,
+                                                ElementName=btnGeneratePassword,
+                                                Property=Y,Constant=100}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression 
+                                            Type=RelativeToParent,
+                                            Property=Width,Factor=1}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Text="Length"
+                VerticalOptions="Center" />
+            <Entry 
+                Grid.Column="1" 
+                Grid.Row="0" 
+                x:Name="entryLength" 
+                Keyboard="Numeric" />
+            <CheckBox 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                x:Name="chkSpecialCharacters" />
+            <Label 
+                Grid.Column="1" 
+                Grid.Row="1" 
+                Text="Include Special Characters" 
+                VerticalOptions="Center" />
+            <CheckBox 
+                Grid.Column="0" 
+                Grid.Row="2" 
+                x:Name="chkNumbers" />
+            <Label 
+                Grid.Column="1" 
+                Grid.Row="2" 
+                Text="Include Numbers"
+                VerticalOptions="Center"/>
+        </Grid>
+        
+    </RelativeLayout>
 
 </ContentPage>
