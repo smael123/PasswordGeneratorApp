@@ -9,6 +9,8 @@ namespace PasswordGeneratorApp.ViewModels
 {
     public class PasswordGeneratorViewModel : BaseViewModel
     {
+        private readonly IPageService _pageService;
+
         private string _generatedPassword;
         public string GeneratedPassword {
             get => _generatedPassword;
@@ -39,10 +41,15 @@ namespace PasswordGeneratorApp.ViewModels
         public ICommand GeneratePasswordCommand { get; private set; }
 
         public PasswordGeneratorViewModel() {
+            _pageService = new PageService();
             GeneratePasswordCommand = new Command(OnGenerateClick);
         }
 
         public void OnGenerateClick() {
+            if (Length <= 0) {
+                _pageService.DisplayToastError("Please enter a length greater than 0.");
+            }
+
             var passwordGenerator = new PasswordGenerator(Length, IncludeSpecialCharacters, IncludeNumbers);
 
             var generatedPassword = passwordGenerator.GeneratePassword();

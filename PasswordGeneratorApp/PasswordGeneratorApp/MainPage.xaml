@@ -45,9 +45,9 @@
             Text="Generate Password" 
             Command="{Binding GeneratePasswordCommand}"
             RelativeLayout.YConstraint="{ConstraintExpression 
-                                                Type=RelativeToView,
-                                                ElementName=lblGeneratedPassword,
-                                                Property=Y,Constant=100}"
+                                            Type=RelativeToView,
+                                            ElementName=lblGeneratedPassword,
+                                            Property=Y,Constant=100}"
             RelativeLayout.XConstraint="{ConstraintExpression 
                                             Type=RelativeToParent,
                                             Property=Width,
