@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordGeneratorApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,17 +16,9 @@ namespace PasswordGeneratorApp
     {
         public MainPage()
         {
+            BindingContext = new PasswordGeneratorViewModel();
+
             InitializeComponent();
-        }
-
-        private void btnGeneratePassword_Clicked(object sender, EventArgs e)
-        {
-            //check if number is inputted later
-            var passwordGenerator = new PasswordGenerator(int.Parse(entryLength.Text), chkSpecialCharacters.IsChecked, chkNumbers.IsChecked);
-
-            var generatedPassword = passwordGenerator.GeneratePassword();
-
-            lblGeneratedPassword.Text = generatedPassword;
         }
     }
 }
