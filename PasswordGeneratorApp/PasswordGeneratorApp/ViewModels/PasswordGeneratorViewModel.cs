@@ -44,8 +44,12 @@ namespace PasswordGeneratorApp.ViewModels
 
         public PasswordGeneratorViewModel() {
             _pageService = new PageService();
+
             GeneratePasswordCommand = new Command(OnGenerateClick);
             CopyClipboardCommand = new Command(async () => await OnClipboardClick());
+
+            IncludeNumbers = true;
+            IncludeSpecialCharacters = true;
         }
 
         public async Task OnClipboardClick() {
