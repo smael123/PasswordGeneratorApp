@@ -32,10 +32,10 @@
                                                 Type=RelativeToParent,
                                                 Property=Width,
                                                 Factor=1}">-->
-            <Label 
+            <Entry 
                 x:Name="lblGeneratedPassword" 
-                BackgroundColor="Yellow"
                 Margin="20"
+                IsReadOnly="True"
                 RelativeLayout.YConstraint="{ConstraintExpression 
                                                 Type=RelativeToView,
                                                 ElementName=frameTitle,
@@ -50,6 +50,7 @@
         <Button 
             x:Name="btnGeneratePassword" 
             Text="Generate Password" 
+            Clicked="btnGeneratePassword_Clicked"
             RelativeLayout.YConstraint="{ConstraintExpression 
                                                 Type=RelativeToView,
                                                 ElementName=lblGeneratedPassword,
@@ -83,7 +84,8 @@
             <CheckBox 
                 Grid.Column="0" 
                 Grid.Row="1" 
-                x:Name="chkSpecialCharacters" />
+                x:Name="chkSpecialCharacters"
+                IsChecked="True" />
             <Label 
                 Grid.Column="1" 
                 Grid.Row="1" 
@@ -92,7 +94,8 @@
             <CheckBox 
                 Grid.Column="0" 
                 Grid.Row="2" 
-                x:Name="chkNumbers" />
+                x:Name="chkNumbers"
+                IsChecked="True" />
             <Label 
                 Grid.Column="1" 
                 Grid.Row="2" 

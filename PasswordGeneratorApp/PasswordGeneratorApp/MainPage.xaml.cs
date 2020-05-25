@@ -17,5 +17,15 @@ namespace PasswordGeneratorApp
         {
             InitializeComponent();
         }
+
+        private void btnGeneratePassword_Clicked(object sender, EventArgs e)
+        {
+            //check if number is inputted later
+            var passwordGenerator = new PasswordGenerator(int.Parse(entryLength.Text), chkSpecialCharacters.IsChecked, chkNumbers.IsChecked);
+
+            var generatedPassword = passwordGenerator.GeneratePassword();
+
+            lblGeneratedPassword.Text = generatedPassword;
+        }
     }
 }
