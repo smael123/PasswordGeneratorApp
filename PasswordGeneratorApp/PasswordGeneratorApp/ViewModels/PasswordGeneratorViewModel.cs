@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -39,10 +40,18 @@ namespace PasswordGeneratorApp.ViewModels
         }
 
         public ICommand GeneratePasswordCommand { get; private set; }
+        public ICommand CopyClipboardCommand { get; private set; }
 
         public PasswordGeneratorViewModel() {
             _pageService = new PageService();
             GeneratePasswordCommand = new Command(OnGenerateClick);
+            CopyClipboardCommand = new Command(async () => await OnClipboardClick());
+        }
+
+        public async Task OnClipboardClick() {
+            await _pageService.SetClipboardText(GeneratedPassword);
+
+            _pageService.DisplayRegularToast("Copied to clipboard.");
         }
 
         public void OnGenerateClick() {

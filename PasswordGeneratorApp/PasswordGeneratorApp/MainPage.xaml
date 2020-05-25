@@ -39,27 +39,34 @@
                                             Type=RelativeToParent,
                                             Property=Width,
                                             Factor=1}" />
-
-        <Button 
-            x:Name="btnGeneratePassword" 
-            Text="Generate Password" 
-            Command="{Binding GeneratePasswordCommand}"
+        <StackLayout
+            x:Name="stackLayoutButtons"
+            Orientation="Horizontal" 
+            HorizontalOptions="CenterAndExpand"
             RelativeLayout.YConstraint="{ConstraintExpression 
                                             Type=RelativeToView,
                                             ElementName=lblGeneratedPassword,
                                             Property=Y,Constant=100}"
-            RelativeLayout.XConstraint="{ConstraintExpression 
-                                            Type=RelativeToParent,
-                                            Property=Width,
-                                            Factor=0.5,
-                                            Constant=-100}" 
-                                        WidthRequest="200" />
+            RelativeLayout.WidthConstraint="{ConstraintExpression 
+                                        Type=RelativeToParent,
+                                        Property=Width,Factor=1}">
+            <Button 
+                x:Name="btnGeneratePassword" 
+                Text="Generate" 
+                Command="{Binding GeneratePasswordCommand}" 
+                WidthRequest="125"/>
+            <Button
+                Text="Copy To Clipboard"
+                Command="{Binding CopyClipboardCommand}"
+                WidthRequest="125"
+                HeightRequest="75"/>
+        </StackLayout>
 
         <Grid 
             Margin="20"
             RelativeLayout.YConstraint="{ConstraintExpression 
                                             Type=RelativeToView,
-                                            ElementName=btnGeneratePassword,
+                                            ElementName=stackLayoutButtons,
                                             Property=Y,Constant=100}"
             RelativeLayout.WidthConstraint="{ConstraintExpression 
                                         Type=RelativeToParent,
