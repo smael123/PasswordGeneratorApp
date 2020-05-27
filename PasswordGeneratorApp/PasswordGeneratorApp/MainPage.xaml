@@ -6,106 +6,54 @@
              mc:Ignorable="d"
              x:Class="PasswordGeneratorApp.MainPage">
 
-    <RelativeLayout>
-        <!-- Place new controls here -->
-        <Frame 
-            x:Name="frameTitle" 
-            RelativeLayout.YConstraint="{ConstraintExpression 
-                                            Type=RelativeToParent,
-                                            Property=Y,
-                                            Factor=1,
-                                            Constant=50}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression 
-                                            Type=RelativeToParent,
-                                            Property=Width,
-                                            Factor=1}" 
-                                            HasShadow="False">
-            <Label 
-                Text="Password Generator" 
-                HorizontalOptions="CenterAndExpand" 
-                FontSize="Title" />
-        </Frame>
+    <FlexLayout Direction="Column" JustifyContent="SpaceBetween">
+        <Label 
+            Text="Password Generator" 
+            FlexLayout.AlignSelf="Center"
+            FontSize="Title" />
 
         <Entry 
-            x:Name="lblGeneratedPassword" 
             Margin="20"
             IsReadOnly="True"
-            Text="{Binding GeneratedPassword}"
-            RelativeLayout.YConstraint="{ConstraintExpression 
-                                            Type=RelativeToView,
-                                            ElementName=frameTitle,
-                                            Property=Y,Constant=100}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression
-                                            Type=RelativeToParent,
-                                            Property=Width,
-                                            Factor=1}" />
-        <StackLayout
-            x:Name="stackLayoutButtons"
-            Orientation="Horizontal" 
-            HorizontalOptions="CenterAndExpand"
-            RelativeLayout.YConstraint="{ConstraintExpression 
-                                            Type=RelativeToView,
-                                            ElementName=lblGeneratedPassword,
-                                            Property=Y,Constant=100}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression 
-                                        Type=RelativeToParent,
-                                        Property=Width,Factor=1}">
+            Text="{Binding GeneratedPassword}" />
+
+        <FlexLayout 
+            JustifyContent="SpaceEvenly" 
+            FlexLayout.Grow="1">
             <Button 
-                x:Name="btnGeneratePassword" 
                 Text="Generate" 
-                Command="{Binding GeneratePasswordCommand}" 
-                WidthRequest="125"/>
+                FlexLayout.AlignSelf="Start"
+                Command="{Binding GeneratePasswordCommand}"
+                WidthRequest="100"
+                HeightRequest="75" />
             <Button
                 Text="Copy To Clipboard"
+                FlexLayout.AlignSelf="Start"
                 Command="{Binding CopyClipboardCommand}"
                 WidthRequest="125"
-                HeightRequest="75"/>
-        </StackLayout>
+                HeightRequest="75" />
+        </FlexLayout>
 
-        <Grid 
-            Margin="20"
-            RelativeLayout.YConstraint="{ConstraintExpression 
-                                            Type=RelativeToView,
-                                            ElementName=stackLayoutButtons,
-                                            Property=Y,Constant=100}"
-            RelativeLayout.WidthConstraint="{ConstraintExpression 
-                                        Type=RelativeToParent,
-                                        Property=Width,Factor=1}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <FlexLayout Margin="20,0" FlexLayout.Grow="1" AlignItems="Center" Wrap="Wrap">
             <Label
-                Grid.Column="0" 
-                Grid.Row="0" 
                 Text="Length"
-                VerticalOptions="Center" />
+                FlexLayout.Basis="15%"/>
             <Entry 
                 Text="{Binding Path=Length}"
-                Grid.Column="1" 
-                Grid.Row="0" 
-                x:Name="entryLength" 
-                Keyboard="Numeric" />
+                Keyboard="Numeric"
+                FlexLayout.Basis="75%"/>
             <CheckBox
-                Grid.Column="0" 
-                Grid.Row="1" 
-                x:Name="chkSpecialCharacters"
-                IsChecked="{Binding Path=IncludeSpecialCharacters}" />
+                IsChecked="{Binding Path=IncludeSpecialCharacters}"
+                FlexLayout.Basis="15%" />
             <Label 
-                Grid.Column="1" 
-                Grid.Row="1" 
                 Text="Include Special Characters" 
-                VerticalOptions="Center" />
+                FlexLayout.Basis="75%" />
             <CheckBox 
                 IsChecked="{Binding Path=IncludeNumbers}"
-                Grid.Column="0" 
-                Grid.Row="2" 
-                x:Name="chkNumbers" />
+                FlexLayout.Basis="15%"/>
             <Label 
-                Grid.Column="1" 
-                Grid.Row="2" 
                 Text="Include Numbers"
-                VerticalOptions="Center"/>
-        </Grid>
-    </RelativeLayout>
+                FlexLayout.Basis="75%"/>
+        </FlexLayout>
+    </FlexLayout>
 </ContentPage>
