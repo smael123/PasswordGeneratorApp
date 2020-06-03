@@ -15,6 +15,7 @@
         <Entry
             Margin="20"
             IsReadOnly="True"
+            IsSpellCheckEnabled="False"
             Text="{Binding GeneratedPassword}" />
 
         <FlexLayout 
