@@ -6,54 +6,64 @@
              mc:Ignorable="d"
              x:Class="PasswordGeneratorApp.MainPage">
 
-    <FlexLayout Direction="Column" JustifyContent="SpaceBetween">
+    <StackLayout Margin="0,20,0,0">
         <Label 
             Text="Password Generator" 
-            FlexLayout.AlignSelf="Center"
+            HorizontalOptions="CenterAndExpand"
             FontSize="Title" />
 
-        <Entry 
+        <Entry
             Margin="20"
             IsReadOnly="True"
             Text="{Binding GeneratedPassword}" />
 
         <FlexLayout 
-            JustifyContent="SpaceEvenly" 
-            FlexLayout.Grow="1">
+            JustifyContent="SpaceEvenly">
             <Button 
                 Text="Generate" 
-                FlexLayout.AlignSelf="Start"
                 Command="{Binding GeneratePasswordCommand}"
                 WidthRequest="100"
                 HeightRequest="75" />
             <Button
                 Text="Copy To Clipboard"
-                FlexLayout.AlignSelf="Start"
                 Command="{Binding CopyClipboardCommand}"
                 WidthRequest="125"
                 HeightRequest="75" />
         </FlexLayout>
 
-        <FlexLayout Margin="20,0" FlexLayout.Grow="1" AlignItems="Center" Wrap="Wrap">
+        <Grid Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <Label
                 Text="Length"
-                FlexLayout.Basis="15%"/>
+                Grid.Column="0"
+                Grid.Row="0"
+                VerticalOptions="CenterAndExpand" />
             <Entry 
                 Text="{Binding Path=Length}"
                 Keyboard="Numeric"
-                FlexLayout.Basis="75%"/>
+                Grid.Column="1"
+                Grid.Row="0" />
             <CheckBox
                 IsChecked="{Binding Path=IncludeSpecialCharacters}"
-                FlexLayout.Basis="15%" />
+                Grid.Column="0"
+                Grid.Row="1" />
             <Label 
                 Text="Include Special Characters" 
-                FlexLayout.Basis="75%" />
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 VerticalOptions="CenterAndExpand" />
             <CheckBox 
                 IsChecked="{Binding Path=IncludeNumbers}"
-                FlexLayout.Basis="15%"/>
+                Grid.Column="0"
+                Grid.Row="2" />
             <Label 
                 Text="Include Numbers"
-                FlexLayout.Basis="75%"/>
-        </FlexLayout>
-    </FlexLayout>
+                Grid.Column="1"
+                Grid.Row="2"
+                VerticalOptions="CenterAndExpand" />
+        </Grid>
+    </StackLayout>
 </ContentPage>
