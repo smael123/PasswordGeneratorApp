@@ -11,6 +11,7 @@ namespace PasswordGeneratorApp.ViewModels
     public class PasswordGeneratorViewModel : BaseViewModel
     {
         private readonly IPageService _pageService;
+        private readonly IPasswordGenerator _passwordGenerator;
 
         private string _generatedPassword;
         public string GeneratedPassword {
@@ -44,6 +45,7 @@ namespace PasswordGeneratorApp.ViewModels
 
         public PasswordGeneratorViewModel() {
             _pageService = new PageService();
+            _passwordGenerator = new PasswordGenerator();
 
             GeneratePasswordCommand = new Command(OnGenerateClick);
             CopyClipboardCommand = new Command(async () => await OnClipboardClick());
@@ -63,9 +65,7 @@ namespace PasswordGeneratorApp.ViewModels
                 _pageService.DisplayToastError("Please enter a length greater than 0.");
             }
 
-            var passwordGenerator = new PasswordGenerator(Length, IncludeSpecialCharacters, IncludeNumbers);
-
-            var generatedPassword = passwordGenerator.GeneratePassword();
+            var generatedPassword = _passwordGenerator.GeneratePassword(Length, IncludeSpecialCharacters, IncludeNumbers);
 
             GeneratedPassword = generatedPassword;
         }
